@@ -1,0 +1,27 @@
+{
+  "name": "graphql_with_prisma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irfanfaraaz/GraphQL_with_Prisma.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irfanfaraaz/GraphQL_with_Prisma/issues"
+  },
+  "homepage": "https://github.com/irfanfaraaz/GraphQL_with_Prisma#readme",
+  "dependencies": {
+    "@prisma/client": "^4.11.0",
+    "apollo-server": "^3.12.0",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "prisma": "^4.11.0"
+  }
+}
