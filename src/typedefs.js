@@ -24,8 +24,8 @@ const typeDefs = gql`
   }
 
   type Query {
-    packages: [Package!]!
-    package(id: ID!): Package!
+    getPackages: [Package!]!
+    getPackage(id: ID!): Package!
     filterPackages(input: Range): [Package!]!
     sortByName: [Package!]!
     sortByCost: [Package!]!

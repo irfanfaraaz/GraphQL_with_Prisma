@@ -2,11 +2,11 @@ const {prisma}= require('./db.js')
 
 const resolvers = {
   Query: {
-    package: async (parent, { id }) => {
+    getPackage: async (parent, { id }) => {
       const package = await prisma.package.findUnique({ where: { id } });
       return package;
     },
-    packages: async () => {
+    getPackages: async () => {
       const packages = await prisma.Package.findMany();
       return packages ;
     },
