@@ -8,11 +8,17 @@ generator client {
 }
 
 model Package {
-  id        Int     @id @default(autoincrement())
-  name      String
-  duration  String
-  cost      Int
-  activities String[]
-  img       String
-  location  String
+  id            String    @id @default(cuid())
+  name          String
+  contact       String?
+  description   String?
+  location      String
+  cost          Float
+  duration      String?
+  image         String
+  activities    String[]
+  details_file  String?
+  updated_at    String?
+  video_link    String?
+  is_premium_flag Boolean?
 }

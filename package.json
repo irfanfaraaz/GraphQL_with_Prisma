@@ -2,9 +2,10 @@
   "name": "graphql_with_prisma",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "data.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,12 @@
   "homepage": "https://github.com/irfanfaraaz/GraphQL_with_Prisma#readme",
   "dependencies": {
     "@prisma/client": "^4.11.0",
-    "apollo-server": "^3.12.0",
-    "graphql": "^16.6.0"
+    "apollo-server": "^2.26.1",
+    "express": "^4.18.2",
+    "graphql": "^14.7.0",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.21",
+    "supabase": "^1.42.3"
   },
   "devDependencies": {
     "prisma": "^4.11.0"
