@@ -10,13 +10,17 @@ const resolvers = {
       const packages = await prisma.Package.findMany();
       return packages ;
     },
-    filterPackages: async (parent, { input }) => {
+    filterByCost: async (parent, args ) => {
+      
       const packages = await prisma.package.findMany({
         where: {
           cost: {
-            gte: input.min,
-            lte: input.max,
+            gte: args.min,
+            lte: args.max,
           },
+        },
+        orderBy: {
+          cost: 'asc',
         },
       });
       return packages;
@@ -45,6 +49,24 @@ const resolvers = {
       });
       return packages;
     },
+    sortPremiumPackages: async () => {
+      const packages = await prisma.package.findMany({
+        where: {
+          is_premium_flag: true,
+        },
+      });
+      return packages;
+    },
+    filterByLocation: async (parent,  args ) => {
+      const packages = await prisma.package.findMany({
+        where: {
+          location: {
+            contains: args.location,
+          },
+        },
+      });
+      return packages; 
+    }
   },
   Mutation: {
     createPackage: async (parent, { input }) => {

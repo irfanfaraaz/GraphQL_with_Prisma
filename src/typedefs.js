@@ -18,18 +18,17 @@ const typeDefs = gql`
     is_premium_flag: Boolean
     # priceRange: [Package]
   }
-  input Range{
-    min: Float
-    max: Float
-  }
+ 
 
   type Query {
     getPackages: [Package!]!
     getPackage(id: ID!): Package!
-    filterPackages(input: Range): [Package!]!
+    filterByCost(min:Float, max:Float): [Package!]!
+    filterByLocation(location: String!): [Package!]!
     sortByName: [Package!]!
     sortByCost: [Package!]!
     sortByLocation: [Package!]!
+    sortPremiumPackages: [Package!]!
   }
   
   input createPackageInput {
