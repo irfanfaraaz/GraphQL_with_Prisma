@@ -1,9 +1,10 @@
-const { ApolloServer } = require('apollo-server');
-const {  typeDefs } = require('./src/typedefs.js');
-const { resolvers } = require('./src/resolvers.js');
+const { ApolloServer } = require('apollo-server')
+const { typeDefs } = require('./src/typedefs.js')
+const { resolvers } = require('./src/resolvers.js')
 
-const server = new ApolloServer({ typeDefs, resolvers });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+const port = process.env.PORT || 4000
+
+new ApolloServer({ resolvers, typeDefs }).listen({ port }, () =>
+  console.log(`Server ready at: http://localhost:${port}`),
+)

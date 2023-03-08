@@ -8,14 +8,14 @@ generator client {
 }
 
 model Package {
-  id            String    @id @default(cuid())
-  name          String
+  id            String    @id @unique @default(cuid())
+  name          String    @unique
   contact       String?
   description   String?
   location      String
   cost          Float
   duration      String?
-  image         String
+  image         String  @unique
   activities    String[]
   details_file  String?
   updated_at    String?

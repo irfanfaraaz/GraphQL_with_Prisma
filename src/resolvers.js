@@ -1,55 +1,36 @@
-const {PackageList} = require("../data");
-const _ = require("lodash");
+const {prisma}= require('./db.js')
 
 const resolvers = {
   Query: {
-    packages: () => {
-      return PackageList;
+    package: async (parent, { id }) => {
+      const package = await prisma.package.findUnique({ where: { id } });
+      return package;
     },
-    package: (parent, args) => {
-        const id=args.id;
-        const package=PackageList.find((package)=>package.id===id);  
-        return package;
-    }
+    packages: async () => {
+      const packages = await prisma.Package.findMany();
+      return packages ;
+    },
   },
-//   Package: {
-//     priceRange:()=>{
-//         return _filter(PackageList, (package)=> package.Cost>=1000 && package.Cost<=2000)
-//     }
-//   },
   Mutation: {
-    createPackage: (parent, args) => {
-        const package = args.input;
-        // const lastId= PackageList[PackageList.length-1].id;
-        // package.id=lastId+1;
-        PackageList.push(package);
-        return package;
+    createPackage: async (parent, { input }) => {
+      const package = await prisma.package.create({ data: input });
+      return package;
     },
-    // updatePackage: (parent, args) => {
-    //     // const id = args.input.id;
-    //     // const package = args.input;
-    //     // PackageList.forEach((package)=>{
-    //     //     if(package.id===id)
-    //     //         Object.assign(package, args.input);
-    //     // })
-        
-    //     // PackageList.push(package);
-    //     // return package;
-    //     const id = args.input.id;
-    //     const package = args.input;
-    //     const index = PackageList.findIndex((package)=>package.id===id);
-    //     if(index!==-1){
-    //         PackageList[index]=package;
-    //     }
-    //     return package;
-        
-    // },
-    deletePackage: (parent, args) => {
-        const id = args.id;
-        _.remove(PackageList, (package)=>package.id===id);
-        return null;
+    updatePackage: async (parent, { id, input }) => {
+      const package = await prisma.package.findUnique({ where: { id } });
+      if (!package) {
+        throw new Error('Could not find package');
+      }
+      const updatedPackage = await prisma.package.update({
+        where: { id },
+        data: input,
+      });
+      return updatedPackage;
     },
-  }
-};
+    deletePackage: async (parent, { id }) => {
+      return prisma.package.delete({ where: { id } })
+    },
+  },
+}
 
-module.exports = { resolvers };
+module.exports = {resolvers}
