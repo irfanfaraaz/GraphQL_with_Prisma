@@ -49,7 +49,7 @@ const resolvers = {
       });
       return packages;
     },
-    sortPremiumPackages: async () => {
+    filterPremiumPackages: async () => {
       const packages = await prisma.package.findMany({
         where: {
           is_premium_flag: true,

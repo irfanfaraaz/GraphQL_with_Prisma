@@ -28,7 +28,7 @@ const typeDefs = gql`
     sortByName: [Package!]!
     sortByCost: [Package!]!
     sortByLocation: [Package!]!
-    sortPremiumPackages: [Package!]!
+    filterPremiumPackages: [Package!]!
   }
   
   input createPackageInput {
